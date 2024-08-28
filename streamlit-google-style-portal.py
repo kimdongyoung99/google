@@ -2,6 +2,7 @@ import streamlit as st
 import base64
 from PIL import Image
 import io
+import webbrowser
 
 # 페이지 설정
 st.set_page_config(page_title="구글 스타일 포털", layout="centered")
@@ -79,7 +80,11 @@ with col1:
 with col2:
     if st.button("검색"):
         if search_term:
-            st.write(f"https://www.google.com/search?q={search_term}")
+            search_url = f"https://www.google.com/search?q={search_term}"
+            webbrowser.open_new_tab(search_url)
+            st.success(f"'{search_term}'에 대한 검색 결과를 새 탭에서 열었습니다.")
+        else:
+            st.warning("검색어를 입력해주세요.")
 
 # 배경 애니메이션 (SVG 대신 간단한 이미지로 대체)
 def create_gradient_image():
